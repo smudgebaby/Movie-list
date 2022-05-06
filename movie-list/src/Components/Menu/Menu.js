@@ -9,6 +9,11 @@ const Menu = () => {
       <nav>
         <ul>
           <li>
+            <NavLink activeClassName={classes.active} to="/Home">
+              Home
+            </NavLink>
+          </li>
+          <li>
             <NavLink activeClassName={classes.active} to="/MovieList">
               Movie List
             </NavLink>

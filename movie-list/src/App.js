@@ -6,6 +6,7 @@ import LikeMovieList from "./containers/Pages/LikeMovieList";
 import BlockedMovieList from "./containers/Pages/BlockedMovieList";
 import NotFound from "./containers/Pages/NotFound";
 import Menu from "./Components/Menu/Menu";
+import Home from "./containers/Pages/Home";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Navigate replace to="/MovieList" />} />
+          <Route path="/Home" element={<Home />} />
           <Route path="/MovieList" element={<MovieList />} />
           <Route path="/MovieList/LikeMovieList" element={<LikeMovieList />} />
           <Route
