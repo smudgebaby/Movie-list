@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 export const AllinOneSlice = createSlice({
   name: 'movieList',
   initialState: {
-    liked: Set(),
-    blocked: Set(),
+    liked: new Set(),
+    blocked: new Set(),
     pageIds: {},
     movieInfo:{},
   },
