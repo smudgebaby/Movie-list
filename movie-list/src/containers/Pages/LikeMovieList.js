@@ -1,5 +1,5 @@
 import React from "react";
-import LikeMovieListCard from "./LikeMovieListCard";
+import LikeMovieListCard from "../../Components/Card/LikeMovieListCard";
 
 const LikeMovieList = () => {
   return (

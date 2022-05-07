@@ -1,5 +1,5 @@
 import React from "react";
-import BlockedMovieListCard from './BlockedMovieListCard'
+import BlockedMovieListCard from '../../Components/Card/BlockedMovieListCard'
 
 const BlockedMovieList = () => {
   return (
