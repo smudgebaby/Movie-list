@@ -16,16 +16,28 @@ const MovieList = () => {
       console.log(responseJson);
       setMovies(responseJson.results);
     } catch (err) {
-      console.log("catch err", err);
+      console.log("catch err this is wrong", err);
     }
   };
   useEffect(() => {
     getMovieRequest();
   }, []);
+  console.log(movies);
 
   return (
     <div className={"container-fluid d-flex flex-wrap justify-content-center "}>
-      <MovieListCard movies={movies} />
+      {movies.map((movie) => {
+        return (
+          <MovieListCard
+            id={movie.id}
+            image={movie.poster_path}
+            title={movie.title}
+            rate={movie.vote_average}
+            release_date={movie.release_date}
+            vote_count={movie.vote_count}
+          />
+        );
+      })}
     </div>
   );
 };
