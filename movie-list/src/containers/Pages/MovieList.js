@@ -4,9 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./MovieList.css";
 
 const MovieList = () => {
-  return (
-
-  );
+  return <div></div>;
 };
 
 export default MovieList;
