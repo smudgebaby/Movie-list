@@ -3,7 +3,7 @@ import "./MovieListCard.css";
 import { useState } from "react";
 const MovieListCard = (props) => {
   const [liked, setLiked] = useState(false);
-  const [blocked, setBlolced] = useState();
+
   return (
     <>
       <div key={props.id} className="m-3 movie_card">
