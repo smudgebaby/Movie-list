@@ -24,48 +24,36 @@ const MovieList = () => {
   /* update data when filter changed */
   /*  useEffect(()=>{
     if(sortBy == 'id'){
-
     }
     elif (sortBy == 'vote'){
-
     }
     elif (sortBy == 'liked'){
-
     }
     elif (sortBy == 'date'){
-
     }
   },[sortBy]) */
 
   /* update data when liked changed */
   /*  useEffect(()=>{
     if(sortBy == 'id'){
-
     }
     elif (sortBy == 'vote'){
-
     }
     elif (sortBy == 'liked'){
-
     }
     elif (sortBy == 'date'){
-
     }
   },[sortBy]) */
 
   /* update data when blocked changed */
   /*  useEffect(()=>{
     if(sortBy == 'id'){
-
     }
     elif (sortBy == 'vote'){
-
     }
     elif (sortBy == 'liked'){
-
     }
     elif (sortBy == 'date'){
-
     }
   },[sortBy]) */
 
@@ -83,14 +71,12 @@ const MovieList = () => {
             setData(null);
             setError(error.message);
         }
-
   }
   let curpagemovies=[]
   pageIds.curpage.forEach((id)=>
     curpagemovies.push(movieInfos[id])
   )
   setmovies(curpagemovies)
-
  */
 
   function pageUp() {
@@ -111,7 +97,6 @@ const MovieList = () => {
       return prev-1;
     });
   }
-
   function fileterb() {
     setNotes(prev => {
       return prev+1;
@@ -122,15 +107,11 @@ const MovieList = () => {
       return prev-1;
     });
   }
-
   function filterd() {
     setNotes(prev => {
       return prev+1;
     });
   }
-
-
-
   function blockMovie(id) {
     setmovies(prevNotes => {
       return prevNotes.filter((noteItem, index) => {
@@ -138,8 +119,6 @@ const MovieList = () => {
       });
     });
   }
-
-
   function likeMovie(id) {
     setmovies(prevNotes => {
       return prevNotes.filter((noteItem, index) => {
@@ -147,10 +126,6 @@ const MovieList = () => {
       });
     });
   }
-
-
-
-
  */
 
   return (
