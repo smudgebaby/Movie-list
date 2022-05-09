@@ -32,26 +32,29 @@ const MovieList = () => {
         dispatch(update(movieThisPage))
         setMovies(movieThisPage)
         setMovieinfos(pre => [...pre,movieThisPage])
+        setSortBy('None')
     })
     } else {
       const movieThisPage=movieinfos.slice((curpage-1)*20,curpage*20+1)
       setMovies(movieThisPage)
+      setSortBy('None')
     }
   },[curpage])
   
   /* update data when filter changed */
   useEffect(()=>{
-    if(sortBy === 'id'){
-      setMovies(pre=>pre.sort((a,b) => {return b.title.localeCompare(a.title);}))
+    let toSort = [...movies]
+    if(sortBy === 'Title'){
+      setMovies(toSort.sort((a,b) => {return b.title.localeCompare(a.title);}))
     }
-    else if (sortBy === 'vote'){
-      setMovies(pre=>pre.sort((a,b) => {return b.vote_average - a.vote_average;}))
+    else if (sortBy === 'VoteAverage'){
+      setMovies(toSort.sort((a,b) => {return b.vote_average - a.vote_average;}))
     }
-    else if (sortBy === 'liked'){
-      setMovies(pre=>pre.sort((a,b) => {return b.vote_count - a.vote_count;}))
+    else if (sortBy === 'VoteCount'){
+      setMovies(toSort.sort((a,b) => {return b.vote_count - a.vote_count;}))
     }
-    else if (sortBy === 'date'){
-      setMovies(pre=>pre.sort((a,b) => {return new Date(b.release_date) - new Date(a.release_date);}))
+    else if (sortBy === 'ReleaseDate'){
+      setMovies(toSort.sort((a,b) => {return new Date(b.release_date) - new Date(a.release_date);}))
     }
     else {
       setMovies(pre=>pre)
@@ -69,6 +72,7 @@ const MovieList = () => {
           }
       return (
             <MovieListCard
+              key = {movie.id}
               liked = {likedStatus}
               id={movie.id}
               image={movie.poster_path}
@@ -101,7 +105,8 @@ const MovieList = () => {
    
   function fileterTitle() {
     if(sortBy==='Title'){
-      setMovies(prev => prev.reverse())
+      let newlist = [...movies]
+      setMovies(newlist.reverse())
     }
     else{
       setSortBy('Title')
@@ -110,7 +115,8 @@ const MovieList = () => {
 
   function fileterVoteAverage() {
     if(sortBy==='VoteAverage'){
-      setMovies(prev => prev.reverse())
+      let newlist = [...movies]
+      setMovies(newlist.reverse())
     }
     else{
       setSortBy('VoteAverage')
@@ -119,7 +125,8 @@ const MovieList = () => {
   
   function fileterReleaseDate() {
     if(sortBy==='ReleaseDate'){
-      setMovies(prev => prev.reverse())
+      let newlist = [...movies]
+      setMovies(newlist.reverse())
     }
     else{
       setSortBy('VReleaseDate')
@@ -128,7 +135,8 @@ const MovieList = () => {
 
   function filterVoteCount() {
     if(sortBy==='VoteCount'){
-      setMovies(prev => prev.reverse())
+      let newlist = [...movies]
+      setMovies(newlist.reverse())
     }
     else{
       setSortBy('VoteCount')
