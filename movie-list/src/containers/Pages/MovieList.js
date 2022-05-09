@@ -6,7 +6,9 @@ import {
   unlike,
   block,
   update
-} from '../../features/movieList/AllInOneSlice'
+} from '../../features/movieList/AllInOneSlice';
+import MovieListCard from '../../Components/Card/MovieListCard';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const MovieList = () => {
   const dispatch = useDispatch();
@@ -65,25 +67,24 @@ const MovieList = () => {
       if (liked.includes(movie.id)){
             likedStatus = true
           }
-      return {/*(
-             <Card
+      return (
+            <MovieListCard
               liked = {likedStatus}
-
-
-            />) */}
+              id={movie.id}
+              image={movie.poster_path}
+              title={movie.title}
+              rate={movie.vote_average}
+              release_date={movie.release_date}
+              vote_count={movie.vote_count}
+              onUnLiked={unlikeMovie}
+              onLiked={likeMovie}
+              onBlock={blockMovie}
+            />
+             ) 
     })
-
     setRealdata(torender)
     }
   ,[liked,blocked,movies]) 
-  /* update data when blocked changed */
- /*  useEffect(()=>{
-    
-    }
-  },[blocked]) */
-
-
-
 
   function pageUp() {
     setCurpage(prev => {
@@ -171,7 +172,7 @@ const MovieList = () => {
         <button onClick={filterVoteCount}>Vote Count</button>
 
       </div>
-      <div>
+      <div className={"container-fluid d-flex flex-wrap justify-content-center "}>
         {realData}
       </div>
     </div>
