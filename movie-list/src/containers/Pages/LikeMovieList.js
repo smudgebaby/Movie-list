@@ -3,6 +3,7 @@ import LikeMovieListCard from "../../Components/Card/LikeMovieListCard";
 import './LikeMovieList.css'
 import { useSelector, useDispatch } from 'react-redux';
 import {unlike, likedToBlocked} from '../../features/movieList/AllInOneSlice.js'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function LikeMovieList(){
   
@@ -29,7 +30,7 @@ export default function LikeMovieList(){
   return (
     <div>
       <div>LikeMovieList</div>
-      <div className="container">
+      <div className="container-fluid d-flex flex-wrap justify-content-center">
         {likedMovies.map(item =>{
           return (
             <LikeMovieListCard 
