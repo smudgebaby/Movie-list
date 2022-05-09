@@ -1,9 +1,6 @@
 import React from "react";
 import "./MovieListCard.css";
-import { useState } from "react";
 const MovieListCard = (props) => {
-  const [liked, setLiked] = useState(props.likedStatus);
-
   function onUnLiked() {
     props.onUnLiked(props.id);
   }
@@ -30,23 +27,17 @@ const MovieListCard = (props) => {
             <span className="green">{props.rate}</span>
           </div>
           <div className="movie_card_button">
-            {liked ? (
+            {props.liked? (
               <button
                 className="movie_card_button-like"
-                onClick={() => {
-                  setLiked(!liked);
-                  onUnLiked();
-                }}
+                onClick={onUnLiked}
               >
                 liked
               </button>
             ) : (
               <button
                 className="movie_card_button-like"
-                onClick={() => {
-                  setLiked(!liked);
-                  onLiked();
-                }}
+                onClick={onLiked}
               >
                 like
               </button>
