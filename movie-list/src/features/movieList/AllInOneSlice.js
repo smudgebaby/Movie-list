@@ -5,42 +5,38 @@ export const AllinOneSlice = createSlice({
   initialState: {
     liked: [],
     blocked: [],
-    pageIds: [],
     movieInfo: []
   },
   reducers: {
-    like:(state,action)=> {
-        state.liked.add(action.payload)
+    like:(state,action)=>{
+        state.like=[...state.liked,action.payload]
     },
 
-    block:(state,action)=> {
-        state.blocked.add(action.payload)
+    block(state,action){
+        state.blocked= [...state.blocked,action.payload]
     },
 
     unlike:(state,action)=>  {
-        state.liked.delete(action.payload)
+        state.liked=state.liked.filter(x => x!==action.payload)
     },
 
     unblock:(state,action)=> {
-        state.blocked.delete(action.payload)
+        state.blocked=state.blocked.filter(x=> x!==action.payload)
     },
 
     likedToBlocked:(state,action)=> {
-        state.liked.delete(action.payload)
-        state.blocked.add(action.payload)
+        state.liked=state.liked.filter(x => x!==action.payload)
+        state.blocked= [...state.blocked,action.payload]
     },
 
     blockedToLiked:(state,action)=> {
-        state.blocked.delete(action.payload)
-        state.liked.add(action.payload)
+        state.blocked=state.blocked.filter(x=> x!==action.payload)
+        state.like=[...state.liked,action.payload]
     },
-
     update:(state,action)=> {
-        state.pageIds[action.payload.pageNumber] = action.payload.curPageIds
-        action.payload.movieInfos.forEach(info => {
-            state.movieInfo[info.id] = info
-        });
+        state.movieInfo = [...state.movieInfo,...action.payload]
     },
+    
     default:(state) => state
   }
 })
