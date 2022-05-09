@@ -2,7 +2,19 @@ import React from "react";
 import "./MovieListCard.css";
 import { useState } from "react";
 const MovieListCard = (props) => {
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(props.likedStatus);
+
+  function onUnLiked() {
+    props.onUnLiked(props.id);
+  }
+
+  function onLiked() {
+    props.onLiked(props.id);
+  }
+
+  function onBlock() {
+    props.onBlock(props.id);
+  }
 
   return (
     <>
@@ -18,13 +30,36 @@ const MovieListCard = (props) => {
             <span className="green">{props.rate}</span>
           </div>
           <div className="movie_card_button">
+            {liked ? (
+              <button
+                className="movie_card_button-like"
+                onClick={() => {
+                  setLiked(!liked);
+                  onUnLiked();
+                }}
+              >
+                liked
+              </button>
+            ) : (
+              <button
+                className="movie_card_button-like"
+                onClick={() => {
+                  setLiked(!liked);
+                  onLiked();
+                }}
+              >
+                like
+              </button>
+            )}
+
             <button
-              className="movie_card_button-like"
-              onClick={() => setLiked(!liked)}
+              className="movie_card_button-block"
+              onClick={() => {
+                onBlock();
+              }}
             >
-              {liked ? "Unlike" : "Like"}
+              Block
             </button>
-            <button className="movie_card_button-block">Block</button>
           </div>
           <div className="movie_card-releaseDate">
             <h6>Released Date:{props.release_date}</h6>
