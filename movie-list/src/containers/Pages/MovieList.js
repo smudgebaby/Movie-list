@@ -9,6 +9,7 @@ import {
 } from '../../features/movieList/AllInOneSlice';
 import MovieListCard from '../../Components/Card/MovieListCard';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { v4 as uuidv4 } from 'uuid';
 
 const MovieList = () => {
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const MovieList = () => {
           }
       return (
             <MovieListCard
-              key = {movie.id}
+              key = {uuidv4()}
               liked = {likedStatus}
               id={movie.id}
               image={movie.poster_path}
@@ -129,7 +130,7 @@ const MovieList = () => {
       setMovies(newlist.reverse())
     }
     else{
-      setSortBy('VReleaseDate')
+      setSortBy('ReleaseDate')
     }
   }
 
