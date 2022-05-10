@@ -29,7 +29,7 @@ export default function BlockedMovieList(){
   return (
     <div>
       <div>BlockedMovieList</div>
-      <div className="container">
+      <div className="container-fluid d-flex flex-wrap justify-content-center">
         {blokedMovies.map(item =>{
           return (
             <BlockedMovieListCard 
