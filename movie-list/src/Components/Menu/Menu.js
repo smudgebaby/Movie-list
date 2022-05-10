@@ -9,26 +9,23 @@ const Menu = () => {
       <nav>
         <ul>
           <li>
-            <NavLink activeClassName={classes.active} to="/Home">
+            <NavLink className={classes.active} to="/Home">
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink activeClassName={classes.active} to="/MovieList">
+            <NavLink className={classes.active} to="/MovieList">
               Movie List
             </NavLink>
           </li>
           <li>
-            <NavLink
-              activeClassName={classes.active}
-              to="/MovieList/LikeMovieList"
-            >
+            <NavLink className={classes.active} to="/MovieList/LikeMovieList">
               Like Movie List
             </NavLink>
           </li>
           <li>
             <NavLink
-              activeClassName={classes.active}
+              className={classes.active}
               to="/MovieList/BlockedMovieList"
             >
               Blocked Movie List
