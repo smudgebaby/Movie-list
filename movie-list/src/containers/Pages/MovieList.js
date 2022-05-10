@@ -17,11 +17,11 @@ const MovieList = () => {
   'https://api.themoviedb.org/3/movie/top_rated?api_key=86114ad4ef0d64d69fc3890cc82c2f14&language=en-US&page='
   const [curpage, setCurpage] = useState(1);
   const [movies, setMovies] = useState([]);
-  const [movieinfos,setMovieinfos] = useState(useSelector(state=> state.movieList.movieInfo));
   const [sortBy, setSortBy] = useState('None');
-  const [liked, setLiked] = useState(useSelector(state=>state.movieList.liked));
-  const [blocked, setBlocked] = useState(useSelector(state=>state.movieList.blocked));
   const [realData,setRealdata] = useState([])
+  const movieinfos = useSelector(state=> state.movieList.movieInfo);
+  const liked = useSelector(state=>state.movieList.liked);
+  const blocked = useSelector(state=>state.movieList.blocked);
   
   /* update data when first render and page changed */
   useEffect(()=>{
@@ -32,13 +32,6 @@ const MovieList = () => {
         const movieThisPage=data.results;
         dispatch(update(movieThisPage))
         setMovies(movieThisPage)
-        setMovieinfos(pre => {
-          let newinfos = [...pre]
-          movieThisPage.forEach(element => {
-            newinfos.push(element)
-          });
-          return newinfos
-        })
         setSortBy('None')
     })
     } else {
@@ -156,24 +149,18 @@ const MovieList = () => {
   function blockMovie(id) {
     dispatch(unlike(id))
     dispatch(block(id))
-    setBlocked(pre => [...pre,id]);
   }
 
 
   function likeMovie(id) {
     dispatch(like(id))
-    setLiked(pre => [...pre,id]);
   };
 
   function unlikeMovie(id) {
     dispatch(unlike(id))
-    setLiked(pre => pre.filter(a=>a!==id));
   };
   
 
-
-
- 
 
   return (
     <div>
