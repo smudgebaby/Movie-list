@@ -3,60 +3,37 @@ import BlockedMovieListCard from '../../Components/Card/BlockedMovieListCard'
 import './BlockedMovieList.css'
 import { useSelector, useDispatch } from 'react-redux';
 import {unblock, blockedToLiked} from '../../features/movieList/AllInOneSlice.js'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function BlockedMovieList(){
-  const [blokedMovies, setBlockedMovies] = React.useState(useSelector((state) => state.movieList.blocked))
+
   const dispatch = useDispatch();
+  const movieInfo = useSelector((state)=> state.movieList.movieInfo)
+
+  var blockedIds = useSelector((state) => state.movieList.blocked)
+  var blockedInfo = movieInfo.filter(m => blockedIds.includes(m.id)) 
+  const [blokedMovies, setBlockedMovies] = React.useState(blockedInfo)
 
   function UnblockMovie(id){
     dispatch(unblock(id))
-    setBlockedMovies(useSelector((state) => state.movieList.blocked))
+    setBlockedMovies(prevMovies =>{return prevMovies.filter(m=>m.id !==id)})
   }
 
   function LikeMovie(id){
     dispatch(blockedToLiked(id))
-    //setLikedMovies(useSelector((state) => state.movieList.liked))
+    setBlockedMovies(prevMovies =>{return prevMovies.filter(m=>m.id !==id)})
   }
-
-
-  const props=[{
-    id:"278",
-    poster_path:"/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
-    },
-    {id:"211",
-    poster_path:"https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bGZn5RVzMMXju4ev7xbl1aLdXqq.jpg"
-    },
-    {
-      id:"278",
-      poster_path:"/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
-      },
-      {id:"211",
-      poster_path:"https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bGZn5RVzMMXju4ev7xbl1aLdXqq.jpg"
-      },
-      {
-        id:"278",
-        poster_path:"/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
-        },
-        {id:"211",
-        poster_path:"https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bGZn5RVzMMXju4ev7xbl1aLdXqq.jpg"
-        },
-        {
-          id:"278",
-          poster_path:"/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
-          },
-          {id:"211",
-          poster_path:"https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bGZn5RVzMMXju4ev7xbl1aLdXqq.jpg"
-          }]
-  
 
   
   return (
     <div>
       <div>BlockedMovieList</div>
       <div className="container">
-        {props.map(item =>{
+        {blokedMovies.map(item =>{
           return (
             <BlockedMovieListCard 
+            key={uuidv4()}
             poster_path={item.poster_path}
             id = {item.id}
             addUnBlock={UnblockMovie}
