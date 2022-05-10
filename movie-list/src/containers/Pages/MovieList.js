@@ -154,6 +154,7 @@ const MovieList = () => {
  
 
   function blockMovie(id) {
+    dispatch(unlike(id))
     dispatch(block(id))
     setBlocked(pre => [...pre,id]);
   }
