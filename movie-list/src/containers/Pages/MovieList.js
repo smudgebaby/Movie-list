@@ -32,7 +32,13 @@ const MovieList = () => {
         const movieThisPage=data.results;
         dispatch(update(movieThisPage))
         setMovies(movieThisPage)
-        setMovieinfos(pre => [...pre,movieThisPage])
+        setMovieinfos(pre => {
+          let newinfos = [...pre]
+          movieThisPage.forEach(element => {
+            newinfos.push(element)
+          });
+          return newinfos
+        })
         setSortBy('None')
     })
     } else {

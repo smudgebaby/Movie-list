@@ -9,7 +9,7 @@ export const AllinOneSlice = createSlice({
   },
   reducers: {
     like:(state,action)=>{
-        state.like=[...state.liked,action.payload]
+        state.liked=[...state.liked,action.payload]
     },
 
     block(state,action){
@@ -31,7 +31,7 @@ export const AllinOneSlice = createSlice({
 
     blockedToLiked:(state,action)=> {
         state.blocked=state.blocked.filter(x=> x!==action.payload)
-        state.like=[...state.liked,action.payload]
+        state.liked=[...state.liked,action.payload]
     },
     update:(state,action)=> {
         state.movieInfo = [...state.movieInfo,...action.payload]
