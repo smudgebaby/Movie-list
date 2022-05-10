@@ -48,6 +48,7 @@ const MovieList = () => {
     }
   },[curpage])
   
+  
   /* update data when filter changed */
   useEffect(()=>{
     let toSort = [...movies]
