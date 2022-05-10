@@ -4,6 +4,7 @@ import './LikeMovieList.css'
 import { useSelector, useDispatch } from 'react-redux';
 import {unlike, likedToBlocked} from '../../features/movieList/AllInOneSlice.js'
 import "bootstrap/dist/css/bootstrap.min.css";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function LikeMovieList(){
   
@@ -24,9 +25,6 @@ export default function LikeMovieList(){
     setLikedMovies(prevMovies =>{return prevMovies.filter(m=>m.id !==id)})
   }
 
-  //console.log(movieInfo)
-  //console.log(likedMovies)
-
   return (
     <div>
       <div>LikeMovieList</div>
@@ -34,6 +32,7 @@ export default function LikeMovieList(){
         {likedMovies.map(item =>{
           return (
             <LikeMovieListCard 
+            key={uuidv4()}
             poster_path={item.poster_path}
             id = {item.id}
             addUnlike={UnlikeMovie}
